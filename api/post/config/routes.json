@@ -5,7 +5,7 @@
       "path": "/posts",
       "handler": "post.find",
       "config": {
-        "policies": []
+        "policies": ["local-policy", "global::is-logged-in"]
       }
     },
     {
