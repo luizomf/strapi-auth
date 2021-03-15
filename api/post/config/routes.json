@@ -37,7 +37,7 @@
       "path": "/posts/:id",
       "handler": "post.update",
       "config": {
-        "policies": []
+        "policies": ["global::is-logged-in"]
       }
     },
     {
@@ -45,7 +45,7 @@
       "path": "/posts/:id",
       "handler": "post.delete",
       "config": {
-        "policies": []
+        "policies": ["global::is-logged-in"]
       }
     }
   ]
