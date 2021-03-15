@@ -5,7 +5,11 @@
       "path": "/posts",
       "handler": "post.find",
       "config": {
-        "policies": []
+        "policies": [
+          "global::my-second-policy",
+          "global::my-first-policy",
+          "global::is-logged-user"
+        ]
       }
     },
     {

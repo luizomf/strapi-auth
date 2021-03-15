@@ -15,4 +15,19 @@ module.exports = {
     const entity = await strapi.services.post.create(post);
     return sanitizeEntity(entity, { model: strapi.models.post });
   },
+
+  async find(ctx) {
+    console.log('Agora sim vem o controller');
+    let entities;
+
+    const query = { ...ctx.query, user: ctx.state.user.id };
+
+    if (ctx.query._q) {
+      entities = await strapi.services.post.search(query);
+    } else {
+      entities = await strapi.services.post.find(query);
+    }
+
+    return entities.map(entity => sanitizeEntity(entity, { model: strapi.models.post }));
+  },
 };
