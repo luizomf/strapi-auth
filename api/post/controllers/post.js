@@ -73,11 +73,17 @@ module.exports = {
 
     if (ctx.is('multipart')) {
       const { data, files } = parseMultipartData(ctx);
-      entity = await strapi.services.post.update({ id }, data, {
+      entity = await strapi.services.post.update({ id }, {
+        ...data,
+        user: ctx.state.user.id
+      }, {
         files,
       });
     } else {
-      entity = await strapi.services.post.update({ id }, ctx.request.body);
+      entity = await strapi.services.post.update({ id }, {
+        ...ctx.request.body,
+        user: ctx.state.user.id
+      });
     }
 
     return sanitizeEntity(entity, { model: strapi.models.post });
